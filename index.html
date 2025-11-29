@@ -12,6 +12,7 @@
       color: #eee;
       text-align: center;
       padding-top: 50px;
+      margin: 0;
     }
     h1 {
       color: #00ff99;
@@ -41,18 +42,17 @@
     }
     .carousel-track {
       display: flex;
-      width: calc(200%);
-      animation: scroll 20s linear infinite;
+      width: calc(800px * 6); /* 6 images total (3 originals + 3 duplicates) */
+      animation: scroll 30s linear infinite;
     }
     .carousel img {
-      width: 100%;
-      max-width: 800px;
+      width: 800px; /* fixed width for smooth scroll */
       flex-shrink: 0;
       border-radius: 8px;
     }
     @keyframes scroll {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      100% { transform: translateX(-2400px); } /* scroll width of 3 images */
     }
 
     /* Shimeji mascot styling */
@@ -69,6 +69,7 @@
       margin-top: 40px;
       font-size: 14px;
       color: #aaa;
+      padding-bottom: 20px;
     }
     footer a {
       color: #4da6ff;
@@ -125,7 +126,7 @@
       if (direction === 1) {
         shimeji.style.transform = 'scaleX(-1)'; // face right
       } else {
-        shimeji.style.transform = 'scaleX(1)'; // face left (normal)
+        shimeji.style.transform = 'scaleX(1)'; // face left
       }
     }
 
