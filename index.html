@@ -61,8 +61,18 @@
       bottom: 0;
       left: 0;
       width: 80px;
-      transition: left 0.03s linear;
+      transition: left 0.03s linear, transform 0.2s linear;
       pointer-events: none; /* so it doesn't block clicks */
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #aaa;
+    }
+    footer a {
+      color: #4da6ff; /* blue link */
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -91,11 +101,15 @@
   <img id="shimeji" src="images/hackibot.gif" alt="Shimeji mascot">
   
   <footer>
-    <p>&copy; 2025 Hackitech | Made by @ExistingPerson1321 and @Tasqlab</p>
+    <p>&copy; 2025 Hackitech | Made by 
+      <a href="https://github.com/existingperson1321" target="_blank">ExistingPerson1321</a> 
+      and 
+      <a href="https://github.com/tasqlab" target="_blank">Tasqlab</a>
+    </p>
   </footer>
   
   <script>
-    // Shimeji walking logic
+    // Shimeji walking logic with flipping
     const shimeji = document.getElementById('shimeji');
     let pos = 0;
     let direction = 1;
@@ -106,6 +120,13 @@
         direction *= -1; // reverse direction when hitting edge
       }
       shimeji.style.left = pos + 'px';
+
+      // Flip when moving right, normal when moving left
+      if (direction === 1) {
+        shimeji.style.transform = 'scaleX(-1)'; // flipped horizontally
+      } else {
+        shimeji.style.transform = 'scaleX(1)'; // normal
+      }
     }
 
     setInterval(moveShimeji, 30); // update every 30ms
