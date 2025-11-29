@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Terminal</title>
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/hackibot.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <style>
@@ -43,24 +44,18 @@
     }
     .carousel-track {
       display: flex;
-      width: calc(800px * 6); /* 6 images total (3 originals + 3 duplicates) */
       animation: scroll 30s linear infinite;
     }
     .carousel img {
-      width: 800px; /* fixed width for smooth scroll */
+      width: 800px; /* adjust to your actual image width */
       flex-shrink: 0;
       border-radius: 8px;
     }
     @keyframes scroll {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-2400px); } /* scroll width of 3 images */
+      100% { transform: translateX(-2400px); } /* 3 images × 800px */
     }
-  footer {
-    background: #333;
-    color: #aaa;
-    padding: 15px;
-    margin-top: 40px;
-    }
+
     /* Shimeji mascot styling */
     #shimeji {
       position: fixed;
@@ -72,10 +67,11 @@
     }
 
     footer {
+      background: #333;
+      color: #aaa;
+      padding: 15px;
       margin-top: 40px;
       font-size: 14px;
-      color: #aaa;
-      padding-bottom: 20px;
     }
     footer a {
       color: #4da6ff;
@@ -106,12 +102,14 @@
 
   <!-- Shimeji mascot -->
   <img id="shimeji" src="images/hackibot.gif" alt="Shimeji mascot">
-  <!-- more info -->
+
+  <!-- More info -->
   <h3>What is The Terminal?</h3>
   <p>The Terminal is a small project by 
     <a href="https://github.com/existingperson1321" target="_blank">ExistingPerson1321</a>
     and is mainly in batch.
   </p>
+
   <footer>
     <p>&copy; 2025 Hackitech | Made by 
       <a href="https://github.com/existingperson1321" target="_blank">ExistingPerson1321</a> 
