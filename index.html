@@ -62,7 +62,7 @@
       left: 0;
       width: 80px;
       transition: left 0.03s linear, transform 0.2s linear;
-      pointer-events: none; /* so it doesn't block clicks */
+      pointer-events: none;
     }
 
     footer {
@@ -71,7 +71,7 @@
       color: #aaa;
     }
     footer a {
-      color: #4da6ff; /* blue link */
+      color: #4da6ff;
       text-decoration: underline;
     }
   </style>
@@ -123,9 +123,9 @@
 
       // Flip when moving right, normal when moving left
       if (direction === 1) {
-        shimeji.style.transform = 'scaleX(-1)'; // flipped horizontally
+        shimeji.style.transform = 'scaleX(-1)'; // face right
       } else {
-        shimeji.style.transform = 'scaleX(1)'; // normal
+        shimeji.style.transform = 'scaleX(1)'; // face left (normal)
       }
     }
 
