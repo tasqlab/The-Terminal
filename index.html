@@ -10,7 +10,7 @@
       background-color: #111;
       color: #eee;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 50px;
     }
     h1 {
       color: #00ff99;
@@ -29,13 +29,54 @@
     a.download-btn:hover {
       background-color: #00cc77;
     }
+
+    /* Carousel styling */
+    .carousel {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+    }
+    .carousel img {
+      width: 100%;
+      display: none;
+      border-radius: 8px;
+    }
+    .carousel img.active {
+      display: block;
+    }
   </style>
 </head>
 <body>
   <h1>Welcome to The Terminal</h1>
   <p>Click below to download the latest release:</p>
   <a class="download-btn" href="https://github.com/existingperson1321/the-terminal/releases/latest">
-    Download the Terminal Here!
+    Download The Terminal Here!
   </a>
+
+  <!-- Auto-scrolling Carousel -->
+  <div class="carousel">
+    <img src="images/eg1.png" class="active" alt="Screenshot 1">
+    <img src="images/eg2.png" alt="Screenshot 2">
+    <img src="images/eg3.png" alt="Screenshot 3">
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.carousel img');
+    let current = 0;
+
+    function showImage(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextImage() {
+      current = (current + 1) % images.length;
+      showImage(current);
+    }
+
+    // Auto-scroll every 3 seconds
+    setInterval(nextImage, 3000);
+  </script>
 </body>
 </html>
