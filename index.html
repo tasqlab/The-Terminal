@@ -94,15 +94,13 @@
     <h1>The Terminal</h1>
   </header>
 
-
   <p>Click below to download the latest release:<br>
     <strong id="version">v{version}</strong> 
     <span id="date">({date updated})</span>
   </p>
-  <a class="download-btn" href="#">
+  <a id="download-btn" class="download-btn" href="#">
     Download The Terminal Here!
   </a>
-
 
   <!-- Continuous Sliding Carousel -->
   <div class="carousel">
@@ -157,40 +155,41 @@
     }
 
     setInterval(moveShimeji, 30); // update every 30ms
-      // Fetch latest release version + date from GitHub
-  async function loadVersion() {
-    try {
-      const response = await fetch("https://api.github.com/repos/existingperson1321/the-terminal/releases/latest");
-      const data = await response.json();
-      const version = data.tag_name;
-      const date = new Date(data.published_at).toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      });
 
-      document.getElementById("version").textContent = version;
-      document.getElementById("date").textContent = `(${date})`;
+    // Fetch latest release version + date from GitHub
+    async function loadVersion() {
+      try {
+        const response = await fetch("https://api.github.com/repos/existingperson1321/the-terminal/releases/latest");
+        const data = await response.json();
+        const version = data.tag_name;
+        const date = new Date(data.published_at).toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
 
-      // Find the .exe asset
-      const exeAsset = data.assets.find(asset => asset.name.endsWith(".exe"));
-      if (exeAsset) {
-        const downloadBtn = document.getElementById("download-btn");
-        // Make button open both download and release page
-        downloadBtn.onclick = () => {
-          // Open direct download
-          window.open(exeAsset.browser_download_url, "_blank");
-          // Also open release page
-          window.open(data.html_url, "_blank");
-        };
+        document.getElementById("version").textContent = version;
+        document.getElementById("date").textContent = `(${date})`;
+
+        // Find the .exe asset
+        const exeAsset = data.assets.find(asset => asset.name.endsWith(".exe"));
+        if (exeAsset) {
+          const downloadBtn = document.getElementById("download-btn");
+          // Update button text to show filename
+          downloadBtn.textContent = `Download ${exeAsset.name}`;
+          // Make button open both download and release page
+          downloadBtn.onclick = () => {
+            window.open(exeAsset.browser_download_url, "_blank"); // direct download
+            window.open(data.html_url, "_blank"); // release page
+          };
+        }
+      } catch (error) {
+        console.error("Error fetching version:", error);
+        document.getElementById("version").textContent = "v?";
+        document.getElementById("date").textContent = "(unknown)";
       }
-    } catch (error) {
-      console.error("Error fetching version:", error);
-      document.getElementById("version").textContent = "v?";
-      document.getElementById("date").textContent = "(unknown)";
     }
-  }
-  loadVersion();
-</script>
+    loadVersion();
+  </script>
 </body>
 </html>
